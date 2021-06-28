@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#01821D</color>
+    <color name="primaryLightColor">#56FA79</color>
+    <color name="primaryDarkColor">#015413</color>
+    <color name="secondaryColor">#01dbfe</color>
+    <color name="secondaryLightColor">#ECFDFD</color>
+    <color name="secondaryLightLessColor">#E9E8ED</color>
+    <color name="secondaryDarkColor">#00a9cb</color>
+    <color name="primaryTextColor">#1D130F</color>
+    <color name="secondaryTextColor">#707070</color>
+    <color name="fillColor">#FAFAFD</color>
+    <color name="fillColorSecond">#F7F7FF</color>
+    <color name="orangeColor">#EF9427</color>
+    <!--    other colors-->
+    <color name="purpleLightColor">#E8EAFC</color>
+    <color name="purpleColor">#2F41CB</color>
+    <color name="purplrLightMoreColor">#F8F8FC</color>
+    <color name="greenLightColor">#CDFEED</color>
+    <color name="greenLightMoreColor">#F6FFFC</color>
+    <color name="greenColor">#04AC04</color>
+    <color name="brownColor">#583522</color>
+    <color name="brownLightColor">#FDECE9</color>
+    <color name="brownLightMoreColor">#FFFBFB</color>
+    <color name="greenCardColor">#0F959A</color>
+    <color name="greenCardLightColor">#1AB9BE</color>
+    <color name="brownCardColor">#503135</color>
+    <color name="brownCardLightColor">#A0616A</color>
+    <color name="redCardColor">#642017</color>
+    <color name="redCardLightColor">#CC3F3F</color>
+    <color name="purpleCardColor">#2F41CB</color>
+    <color name="purpleCardLightColor">#8373CA</color>
+    <color name="magenterColor">#FD1A67</color>
+    <color name="magenterLightColor">#FFADC9</color>
+    <color name="magenterLightMoreColor">#FDF1F5</color>
+
+
+    <array name="array_dot_inactive">
+        <item>@color/primaryLightColor</item>
+        <item>@color/primaryLightColor</item>
+        <item>@color/primaryLightColor</item>
+        <item>@color/primaryLightColor</item>
+    </array>
+
+    <array name="array_dot_active">
+        <item>@color/primaryDarkColor</item>
+        <item>@color/primaryDarkColor</item>
+        <item>@color/primaryDarkColor</item>
+        <item>@color/primaryDarkColor</item>
+    </array>
+
+    <color name="dialog_choose_icon_color">@android:color/black</color>
+    <color name="dialog_choose_text_color">@android:color/black</color>
+
+    <!--uCrop Activity-->
+    <color name="ucrop_color_active_controls_color">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_inactive_controls_color">#787878</color>
+    <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_active_aspect_ratio">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_widget_text">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_toolbar">@android:color/white</color>
+    <color name="ucrop_color_statusbar">@android:color/black</color>
+    <color name="ucrop_color_widget_active">@android:color/white</color>
+
+
+    <color name="facebookColor">#3b5998</color>
+    <color name="amberColor">#FF9800</color>
+
+    <color name="colorHelper">#8B8B8B</color>
+    <color name="colorLightGray">#EDEDED</color>
+    <color name="colorLightGrayMore">#FDFDFD</color>
+    <color name="colorGray">#8F8F8F</color>
+    <color name="colorError">#D10900</color>
+    <color name="colorErrorMinor">#870000</color>
+    <color name="colorGreen">#008E22</color>
+    <color name="colorTwitter">#48B3DC</color>
+    <color name="colorGreenLighter">#1BCE23</color>
+    <color name="colorPlaceHolder">#F3F3F3</color>
+    <color name="colorShimerDarker">#CACACA</color>
+    <color name="primaryLightColorMore">#DAFFFB</color>
+
+    <!--    <!-Colors of all times&ndash;&gt;-->
+    <color name="colorBeer">#FAEFDF</color>
+    <color name="colorWine">#FDEFF4</color>
+    <color name="colorWhiskey">#F3F3F3</color>
+    <color name="colorVodka">#E3F3FA</color>
+    <color name="colorMore">#E8FDD0</color>
+
+
+    <!--RATING COLORS-->
+    <color name="colorYellow">#ffe234</color>
+    <color name="colorYellowLight">#F4E795</color>
+
+    <color name="colorGreenRate">#57e32c</color>
+    <color name="colorGreenRateLight">#9DFA80</color>
+
+    <color name="colorRedRate">#FF0051</color>
+    <color name="colorRedRateLight">#FBD3D3</color>
+
+    <color name="colorLessGreen">#b7dd29</color>
+    <color name="colorLessGreenLight">#E7FF8B</color>
+
+    <color name="colorBrownRate">#ffa534</color>
+    <color name="colorBrownRateLight">#FDDFB9</color>
+
+    <color name="colorClicks">#03A9F4</color>
+</resources>
