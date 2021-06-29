@@ -16,34 +16,46 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:paddingTop="16dp"
             android:id="@+id/lotty.main"
             android:layout_width="match_parent"
             android:layout_height="240dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_undraw_video_streaming_re_v3qg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_undraw_discount_d4bd"
-            android:layout_marginEnd="24dp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Favourable Prices"
-            android:textAppearance="?textAppearanceHeadline5"
-            android:textColor="@android:color/black"
-            app:fontFamily="@font/normal" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="One can find any affordable house to rent"
+            android:layout_marginEnd="24dp"
+            android:text="See videos for more information"
             android:textAlignment="center"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
+            android:textAppearance="?textAppearanceHeadline4"
+            android:textColor="@android:color/black"
+            app:fontFamily="@font/normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lotty.main" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="You can be entertained by seeing amazing videos of how plants grow and pick up few insights that will help you be more successful with your indoor garden."
+            android:textAlignment="center"
             android:textAppearance="?textAppearanceBody1"
             android:textColor="@color/secondaryTextColor"
-            app:fontFamily="@font/normal" />
+            app:fontFamily="@font/normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView3" />
 
     </LinearLayout>
 
