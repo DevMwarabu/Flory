@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_selected="true"
-        android:color="@color/primaryLightColorMore" />
+        android:color="@color/secondaryTextColor" />
     <item
-        android:color="@color/primaryDarkColor" />
+        android:color="@android:color/black" />
 </selector>

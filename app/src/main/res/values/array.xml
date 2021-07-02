@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>Select Category</item>
+        <item>Indoor</item>
+        <item>Outdoor</item>
+        <item>Garden</item>
+    </string-array>
+</resources>

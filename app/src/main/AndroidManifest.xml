@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.laxco.gardening"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.laxco.gardening">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,7 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gardening"
         tools:replace="android:theme">
-        <activity android:name=".Dashboard"/>
+        <activity android:name=".Description"></activity>
+        <activity android:name=".Searching" />
+        <activity android:name=".NewPlant" />
+        <activity
+            android:name=".Dashboard"
+            android:theme="@style/Theme.Dashboard" />
         <activity android:name=".Introduction.WelcomeActivity" />
         <activity android:name=".Splashscreen">
             <intent-filter>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav.upload"
+        android:title="Upload"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_cloud_computing"/>
+    <item
+        android:id="@+id/nav.call"
+        android:title="Call"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_phone_call"/>
+
+    <item
+        android:id="@+id/nav.whats.app"
+        android:title="WhatsApp"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_whatsapp"/>
+
+</menu>

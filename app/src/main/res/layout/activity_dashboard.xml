@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,6 +28,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 android:layout_height="match_parent">
 
@@ -40,6 +42,7 @@
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
+                    android:id="@+id/card.saerch"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +68,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="8dp"
-                            android:text="Find or exlore different plants..."
+                            android:text="Find or explore different plants..."
                             android:textAppearance="?textAppearanceCaption"
                             android:textColor="@color/colorGray" />
                     </LinearLayout>
@@ -75,9 +78,9 @@
                     android:id="@+id/htab_header"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/ic_main_image"
+                    android:background="@drawable/image_top"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +89,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/htab_toolbar"
+                android:id="@+id/toolbar.main"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="top"
@@ -99,22 +102,26 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleMarginStart="12dp"
                 app:titleTextAppearance="?textAppearanceHeadline5"
-                app:titleTextColor="@color/secondaryTextColor"/>
+                app:titleTextColor="@android:color/black">
+                <androidx.appcompat.widget.ActionMenuView
+                    android:id="@+id/amvMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"/>
+            </com.google.android.material.appbar.MaterialToolbar>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tablayout.main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                app:tabGravity="fill"
+                app:tabGravity="center"
                 android:background="@android:color/transparent"
-                app:tabIconTint="@color/bottom_navigation_colors"
                 app:tabIndicatorAnimationMode="elastic"
                 app:tabIndicatorColor="@color/primaryDarkColor"
-                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorFullWidth="false"
                 app:tabIndicatorGravity="bottom"
                 app:tabIndicatorHeight="3dp"
-                app:tabMode="auto"
+                app:tabMode="fixed"
                 app:tabRippleColor="@color/fillColorSecond"
                 app:tabSelectedTextColor="@color/bottom_navigation_colors"
                 app:tabTextAppearance="?textAppearanceBody1"/>
@@ -128,4 +135,4 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
