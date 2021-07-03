@@ -70,6 +70,8 @@ public class Dashboard extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //setting viewPager adapter
@@ -79,7 +81,9 @@ public class Dashboard extends AppCompatActivity {
         //setting tab titles
         tabLayout.getTabAt(0).setText("Indoor");
         tabLayout.getTabAt(1).setText("Outdoor");
-        tabLayout.getTabAt(2).setText("Gardening");
+        tabLayout.getTabAt(2).setText("Garden");
+        tabLayout.getTabAt(3).setText("Pots");
+        tabLayout.getTabAt(4).setText("Others");
 
         viewPager.addOnPageChangeListener((ViewPager.OnPageChangeListener) new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -114,18 +118,36 @@ public class Dashboard extends AppCompatActivity {
             //opening whatsApp
             String text = "Hi..! I wanted to enquire something about your flowers.";
             try {
-                openWhatsApp("+254799092727",text);
+                openWhatsApp("+254725877810",text);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
         if (id == R.id.nav_call){
             //making a call
-            makeCall("+254716698513");
+            makeCall("+254725877810");
         }
         if (id == R.id.nav_upload){
             //uploading
             startActivity(new Intent(Dashboard.this,NewPlant.class));
+        }
+        if (id == R.id.nav_insta){
+            //following
+
+            Uri uri = Uri.parse("https://www.instagram.com/kerichoflora/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        if (id == R.id.nav_share_app){
+            //sharing app
+            String message = "Hi....!! You can now use Kericho Flora App dealer in Jewels,Flowers,pots and wedding gowns for more information visit: " + "https://play.google.com/store/apps/details?" + BuildConfig.APPLICATION_ID;
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+            sendIntent.setType("text/plain");
+            Intent.createChooser(sendIntent, "Share Kericho Flora App via");
+            startActivity(sendIntent);
         }
         return super.onOptionsItemSelected(item);
     }

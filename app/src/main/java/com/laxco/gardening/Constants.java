@@ -9,5 +9,6 @@ public class Constants {
     public static final String getPLants = mainUrl+"getPLants.php";
     public static final String getAllPlants = mainUrl+"getAllPlants.php";
     public static final String getRelatedPlats = mainUrl+"getRelatedPlats.php";
+    public static final String getPlantSpecific = mainUrl+"getPlantSpecific.php";
 
 }

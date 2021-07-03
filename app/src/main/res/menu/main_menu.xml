@@ -5,6 +5,7 @@
         android:id="@+id/nav.upload"
         android:title="Upload"
         app:showAsAction="always"
+        android:visible="false"
         android:icon="@drawable/ic_cloud_computing"/>
     <item
         android:id="@+id/nav.call"
@@ -17,5 +18,17 @@
         android:title="WhatsApp"
         app:showAsAction="always"
         android:icon="@drawable/ic_whatsapp"/>
+
+    <item
+        android:id="@+id/nav.insta"
+        android:title="Instagram"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_instagram"/>
+
+    <item
+        android:id="@+id/nav.share.app"
+        android:title="Sahre"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_share"/>
 
 </menu>

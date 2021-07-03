@@ -5,5 +5,7 @@
         <item>Indoor</item>
         <item>Outdoor</item>
         <item>Garden</item>
+        <item>Pots</item>
+        <item>Others</item>
     </string-array>
 </resources>

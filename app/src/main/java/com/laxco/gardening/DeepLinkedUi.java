@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,7 +20,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +36,6 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.github.clans.fab.FloatingActionButton;
 import com.laxco.gardening.AdaptersModels.Plant;
-import com.laxco.gardening.AdaptersModels.PlantAdapter;
 import com.laxco.gardening.AdaptersModels.PlantAdapterRelated;
 
 import org.json.JSONArray;
@@ -50,7 +49,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Description extends AppCompatActivity {
+public class DeepLinkedUi extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView mImageView;
     private TextView mName,mDesc,mOrigin,mHeight;
@@ -58,24 +57,22 @@ public class Description extends AppCompatActivity {
     private List<Plant> plants;
     private PlantAdapterRelated plantAdapter;
     private FloatingActionButton mCall, mWhatsApp,mShare;
+    private ProgressDialog progressDialog;
 
-    private String strName,strDesc,strOrigin,strHeight,strImageUrl,strCatId,strId;
+    private String strId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_description);
+        setContentView(R.layout.activity_deep_linked_ui);
 
         plants = new ArrayList<>();
         plantAdapter = new PlantAdapterRelated(plants,this);
+        Intent intent = getIntent();
 
-        strName = getIntent().getExtras().getString("strName");
-        strDesc = getIntent().getExtras().getString("strDesc");
-        strOrigin = getIntent().getExtras().getString("strOrigin");
-        strHeight = getIntent().getExtras().getString("strHeight");
-        strImageUrl = getIntent().getExtras().getString("strImageUrl");
-        strCatId = getIntent().getExtras().getString("strCatId");
-        strId = getIntent().getExtras().getString("strId");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
 
 
         toolbar = findViewById(R.id.toolbar_main);
@@ -101,36 +98,16 @@ public class Description extends AppCompatActivity {
         mWhatsApp = findViewById(R.id.menu_whatsapp);
         mShare = findViewById(R.id.menu_share);
 
-        //setting data to respective views
-        mName.setText(strName);
-        mOrigin.setText(strOrigin);
-        mHeight.setText(strHeight);
-        mDesc.setText(strDesc);
-        //setting image
-        Glide.with(getApplicationContext())
-                .asBitmap()
-                .load(strImageUrl)
-                .placeholder(R.drawable.ic_leaf)
-                .error(R.drawable.ic_leaf)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        mImageView.setImageBitmap(resource);
-                    }
 
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                    }
-                });
-
-        mCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //making a call
-                makeCall("+254725877810");
-
-            }
-        });
+        final LinearLayoutManager layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        //loading related plants
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri uri = intent.getData();
+            strId = uri.getQueryParameter("strId");
+            getData(strId);
+        }
 
         mShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,28 +115,18 @@ public class Description extends AppCompatActivity {
                 sharingProduct();
             }
         });
+    }
 
+    private void sharingProduct(){
 
-        mWhatsApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        String message = "Hi....!! Click the link below to view the shared product from Kericho Flora\nLink:\nhttps://kflora.app.link?strId="+strId;
 
-                //opening whatsApp
-                String text = "Hi..! I wanted to enquire about the "+strName+" plant on your app.";
-                try {
-                    openWhatsApp("+254725877810",text);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-        final LinearLayoutManager layoutManager = new GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        //loading related plants
-        getData(strCatId,strId);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,message);
+        sendIntent.setType("text/plain");
+        Intent.createChooser(sendIntent,"Share Product via");
+        startActivity(sendIntent);
     }
 
 
@@ -195,6 +162,121 @@ public class Description extends AppCompatActivity {
     }
 
 
+    private void getData(String strIdMain){
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.getPlantSpecific, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.i("res_near_you", "[" + response + "]");
+                    JSONObject object = new JSONObject(response);
+
+                    JSONArray jsonArray = object.getJSONArray("plants");
+                    if (jsonArray.length()>0) {
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                            String strName = jsonObject.getString("strName");
+                            String strDesc = jsonObject.getString("strDesc");
+                            String strOrigin = jsonObject.getString("strOrigin");
+                            String strHeight = jsonObject.getString("strHeight");
+                            String strImageUrl = jsonObject.getString("strImageUrl");
+                            String strCatId = jsonObject.getString("strCatId");
+                            String strId = jsonObject.getString("strId");
+
+                            Plant plant = new Plant(strName,strDesc,strOrigin,strHeight,strImageUrl,strCatId,strId);
+                            plants.add(plant);
+                            mRecyclerView.setAdapter(plantAdapter);
+
+                            //load other data
+                            if (i == (jsonArray.length()-1)){
+                                getData(strCatId,strIdMain);
+
+
+                                //setting data to respective views
+                                mName.setText(strName);
+                                mOrigin.setText(strOrigin);
+                                mHeight.setText(strHeight);
+                                mDesc.setText(strDesc);
+                                //setting image
+                                Glide.with(getApplicationContext())
+                                        .asBitmap()
+                                        .load(strImageUrl)
+                                        .placeholder(R.drawable.ic_leaf)
+                                        .error(R.drawable.ic_leaf)
+                                        .into(new CustomTarget<Bitmap>() {
+                                            @Override
+                                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                                mImageView.setImageBitmap(resource);
+                                            }
+
+                                            @Override
+                                            public void onLoadCleared(@Nullable Drawable placeholder) {
+                                            }
+                                        });
+
+                                mCall.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //making a call
+                                        makeCall("+254725877810");
+
+                                    }
+                                });
+
+
+                                mWhatsApp.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        //opening whatsApp
+                                        String text = "Hi..! I wanted to enquire about the "+strName+" plant on your app.";
+                                        try {
+                                            openWhatsApp("+254725877810",text);
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                            }
+
+                        }
+                        plantAdapter.notifyDataSetChanged();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Log.i("res_near_you", "[" + e.getMessage() + "]");
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Log.i("res_near_you", "[" + error.getMessage() + "]");
+
+            }
+
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("strId", strIdMain);
+                return map;
+            }
+
+        };
+        //creating a request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //adding the string request to request queue
+        requestQueue.add(stringRequest);
+    }
+
+
     private void getData(String strCatId,String strId){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.getRelatedPlats, new Response.Listener<String>() {
             @Override
@@ -205,6 +287,7 @@ public class Description extends AppCompatActivity {
 
                     JSONArray jsonArray = object.getJSONArray("plants");
                     if (jsonArray.length()>0) {
+                        progressDialog.dismiss();
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -253,18 +336,5 @@ public class Description extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //adding the string request to request queue
         requestQueue.add(stringRequest);
-    }
-
-
-    private void sharingProduct(){
-
-        String message = "Hi....!! Click the link below to view the shared product from Kericho Flora\nLink:\nhttps://kflora.app.link?strId="+strId;
-
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT,message);
-        sendIntent.setType("text/plain");
-        Intent.createChooser(sendIntent,"Share Product via");
-        startActivity(sendIntent);
     }
 }

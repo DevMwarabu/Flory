@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
-    tools:context=".Description">
+    tools:context=".DeepLinkedUi">
 
     <!--Toolbar-->
     <androidx.appcompat.widget.Toolbar
@@ -233,6 +233,5 @@
             fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
