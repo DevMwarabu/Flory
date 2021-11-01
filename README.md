@@ -1,3 +1,12 @@
+
+
+
+
+![alt text](https://github.com/[DevMwarabu]/Flory/blob/main/1.jpg?raw=true)
+
+
+
+
 # Flory
 Gardening flowers for sale app
 Mobile Apps are making shopping easier than ever. It’s no surprise that m-Commerce (mobile commerce) businesses all over the world are adopting mobile Apps to improve their sales and increase customer loyalty. The world is turning mobile, and it’s happening fast.
