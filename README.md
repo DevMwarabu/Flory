@@ -2,7 +2,7 @@
 
 
 
-![alt text](https://github.com/[DevMwarabu]/Flory/blob/main/1.jpg?raw=true)
+![alt text](https://github.com/[DevMwarabu]/Flory/blob/main/1.png?raw=true)
 
 
 
