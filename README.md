@@ -25,3 +25,8 @@ You can use Push Notifications in a number of ways. I’m going to explain what 
 This feature can be used in many different ways. But i’ll just give you the main ways you can make use of it. With this feature, you can set specific predefined geographical areas in which to send messages to your app user’s phones. In very basic terms, draw a circle around an area and send messages only to those who walk into it.
 
 Use geofencing to send Push Notifications to App users when they walk by your shop, or even walk by your competitor’s shops! Inform them of your new flowers and arrangements. Send messages that could remind users of any birthdays, anniversaries or other special occasions they have coming up.
+# Contributors
+
+KILI EMMANUEL
+CLEMENT KOECH
+JOHN MWARABU
